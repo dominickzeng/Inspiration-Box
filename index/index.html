@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祝王琥懿生日快乐</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, #000428 0%, #004e92 100%);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
+        .gif-container {
+            width: 50%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .photo {
+            position: absolute;
+            width: 200px; /* 放大照片尺寸 */
+            height: 200px; /* 放大照片尺寸 */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo.left {
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .photo.right {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            background: #ff4081;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #ff4081;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 2px;
+            height: 40px;
+            background: #000;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-100px) rotate(10deg);
+            }
+        }
+
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            animation: firework 1.5s ease-out infinite;
+            z-index: 5;
+        }
+
+        @keyframes firework {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .big-firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff4081;
+            border-radius: 50%;
+            animation: bigFirework 2s ease-out infinite;
+            z-index: 5;
+        }
+
+        @keyframes bigFirework {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(3);
+                opacity: 0;
+            }
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+            z-index: 1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .interactive {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>祝王琥懿生日快乐！</h1>
+    <div class="gif-container">
+        <img src="img/479fae38bdd0c82517f0 -original-original(1).gif" alt="生日祝福GIF">
+    </div>
+
+    <div class="photo left">
+        <img src="img/微信图片_20250301010246.jpg" alt="左照片">
+    </div>
+    <div class="photo right">
+        <img src="img/微信图片_20250301010253.jpg" alt="右照片">
+    </div>
+
+    <div class="interactive" onclick="addBalloon(event)"></div>
+
+    <script>
+        function addBalloon(event) {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.left = `${event.clientX}px`;
+            balloon.style.top = `${event.clientY}px`;
+            document.body.appendChild(balloon);
+
+            setTimeout(() => {
+                balloon.remove();
+            }, 6000);
+        }
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.left = `${Math.random() * 100}vw`;
+            firework.style.top = `${Math.random() * 100}vh`;
+            firework.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+            document.body.appendChild(firework);
+
+            setTimeout(() => {
+                firework.remove();
+            }, 1500);
+        }
+
+        function createBigFirework() {
+            const bigFirework = document.createElement('div');
+            bigFirework.classList.add('big-firework');
+            bigFirework.style.left = `${Math.random() * 100}vw`;
+            bigFirework.style.top = `${Math.random() * 100}vh`;
+            bigFirework.style.animationDuration = `${Math.random() * 2 + 1}s`;
+            document.body.appendChild(bigFirework);
+
+            setTimeout(() => {
+                bigFirework.remove();
+            }, 2000);
+        }
+
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.animationDuration = `${Math.random() * 2 + 1}s`;
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 2000);
+        }
+
+        setInterval(createFirework, 300);
+        setInterval(createBigFirework, 1000);
+        setInterval(createStar, 100);
+    </script>
+</body>
+</html>
